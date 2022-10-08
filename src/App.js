@@ -4,6 +4,9 @@ import './App.css';
 import Banner from './Components/Banner';
 import Header from './Components/Header';
 import MenuContainer from './Components/MenuContainer';
+import SubMenuContainer from './Components/SubMenuContainer';
+import { MenuCard } from './Components/MenuCard';
+import { MenuItems, Items } from './Components/Data'
 
 
 function App() {
@@ -16,6 +19,16 @@ function App() {
       this.classList.add('active');
     }
     menuLi.forEach(n => n.addEventListener('click', setMenuActive))
+
+    // Menu card active toogle
+    const menuCards = document.querySelector('.row-container').querySelectorAll('.row-menu-card')
+
+    function setMenuCardActive() {
+      menuCards.forEach(n => n.classList.remove("active"));
+      this.classList.add('active');
+    }
+
+    menuCards.forEach(n => n.addEventListener('click', setMenuCardActive))
   }, []);
 
   return (
@@ -30,6 +43,24 @@ function App() {
           <div className="banner">
             <Banner name={"Chiranjiv"} discount={"20"} link={"#"} />
             <img src="https://firebasestorage.googleapis.com/v0/b/food-delivery-37c59.appspot.com/o/Images%2Fdelivery.png?alt=media&token=69b9823d-96df-452a-bd4e-14d27a4cc337" alt="banner image" className='delivery-img' />
+          </div>
+          <div className='dish-container'>
+            <div className='menu-card'>
+              <SubMenuContainer name={"Menu Category"} />
+            </div>
+
+            <div className='row-container'>
+              {
+                MenuItems.map(data => (
+                  <div key={data.id}>
+                    <MenuCard imgSrc={data.imgSrc} name={data.name} isActive={data.id === 1 ? true : false} />
+                  </div>
+
+                ))
+              }
+
+            </div>
+            <div className='dish-item-container'></div>
           </div>
         </div>
         <div className='right-menu'></div>

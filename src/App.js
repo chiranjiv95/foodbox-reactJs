@@ -1,5 +1,5 @@
 import { AccountBalanceWalletRounded, Chat, Favorite, HomeRounded, Settings, SummarizeRounded } from '@mui/icons-material';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import Banner from './Components/Banner';
 import Header from './Components/Header';
@@ -7,9 +7,14 @@ import MenuContainer from './Components/MenuContainer';
 import SubMenuContainer from './Components/SubMenuContainer';
 import { MenuCard } from './Components/MenuCard';
 import { MenuItems, Items } from './Components/Data'
+import { ItemCard } from './Components/ItemCard';
 
 
 function App() {
+
+  const [isMainData, setMainData] = useState(
+    Items.filter((element) => element.itemId === "buger01")
+  );
 
   useEffect(() => {
     const menuLi = document.querySelectorAll('#menu li');
@@ -29,7 +34,11 @@ function App() {
     }
 
     menuCards.forEach(n => n.addEventListener('click', setMenuCardActive))
-  }, []);
+  }, [isMainData]);
+
+  const setData = (itemId) => {
+    setMainData(Items.filter((element) => element.itemId == itemId));
+  };
 
   return (
     <div className="App">
@@ -52,15 +61,28 @@ function App() {
             <div className='row-container'>
               {
                 MenuItems.map(data => (
-                  <div key={data.id}>
+                  <div key={data.id} onClick={() => setData(data.itemId)}>
                     <MenuCard imgSrc={data.imgSrc} name={data.name} isActive={data.id === 1 ? true : false} />
                   </div>
 
                 ))
               }
-
             </div>
-            <div className='dish-item-container'></div>
+
+            <div className='dish-item-container'>
+              {isMainData &&
+                isMainData.map((data) => (
+                  <ItemCard
+                    key={data.id}
+                    itemId={data.id}
+                    imgSrc={data.imgSrc}
+                    name={data.name}
+                    ratings={data.ratings}
+                    price={data.price}
+                  />
+                ))}
+            </div>
+
           </div>
         </div>
         <div className='right-menu'></div>

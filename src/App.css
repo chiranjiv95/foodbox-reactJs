@@ -9,6 +9,125 @@
   display: none;
 }
 
+/* Left menu styles starts */
+.bottom-menu {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 60px;
+  background: #d5d5d5;
+  border-radius: 25px 25px 0px 0px;
+  z-index: 101;
+}
+
+.bottom-menu ul {
+  display: flex;
+}
+
+.bottom-menu ul li {
+  position: relative;
+  list-style: none;
+  width: 60px;
+  height: 60px;
+  z-index: 1;
+}
+
+.bottom-menu ul li a {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+  font-weight: 500;
+}
+
+.bottom-menu ul li a .icon {
+  position: relative;
+  display: block;
+  line-height: 70px;
+  text-align: center;
+  transition: 0.5s;
+}
+
+.bottom-menu ul li a .icon .MuiSvgIcon-root {
+  font-size: 26px;
+  color: #373848;
+}
+
+.bottom-menu ul li.active a .icon {
+  transform: translateY(-26px);
+}
+
+.bottom-menu ul li.active a .icon .MuiSvgIcon-root {
+  color: #faf9fb;
+  transition: 0.5s;
+}
+
+.indicator {
+  position: absolute;
+  height: 60px;
+  width: 60px;
+  background: #f8901c;
+  top: -50%;
+  border-radius: 50%;
+  border: 6px solid #faf9fb;
+  transition: 0.5s;
+}
+
+.indicator::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -20px;
+  width: 18px;
+  height: 18px;
+  background: transparent;
+  border-top-right-radius: 18px;
+  box-shadow: 0px -10px 0 0 #faf9fb;
+}
+
+.indicator::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -20px;
+  width: 18px;
+  height: 18px;
+  background: transparent;
+  border-top-left-radius: 18px;
+  box-shadow: 0px -10px 0 0 #faf9fb;
+}
+
+.bottom-menu ul li:nth-child(1).active~.indicator {
+  transform: translateX(calc(60px * 0));
+}
+
+.bottom-menu ul li:nth-child(2).active~.indicator {
+  transform: translateX(calc(60px * 1));
+}
+
+.bottom-menu ul li:nth-child(3).active~.indicator {
+  transform: translateX(calc(60px * 2));
+}
+
+.bottom-menu ul li:nth-child(4).active~.indicator {
+  transform: translateX(calc(60px * 3));
+}
+
+.bottom-menu ul li:nth-child(5).active~.indicator {
+  transform: translateX(calc(60px * 4));
+}
+
+.bottom-menu ul li:nth-child(6).active~.indicator {
+  transform: translateX(calc(60px * 5));
+}
+
 /* Main section styles */
 main {
   margin-top: 60px;
@@ -348,123 +467,152 @@ main {
   font-size: 16px;
 }
 
-/* Left menu styles starts */
-.bottom-menu {
+/* Right Menu */
+.right-menu {
+  width: 350px;
+  height: calc(100% - 60px);
+  background: #fff;
   position: fixed;
-  bottom: 0;
-  left: 0;
+  right: 0;
+  top: 60px;
+  z-index: 105;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 60px;
-  background: #d5d5d5;
-  border-radius: 25px 25px 0px 0px;
-  z-index: 101;
-}
-
-.bottom-menu ul {
-  display: flex;
-}
-
-.bottom-menu ul li {
-  position: relative;
-  list-style: none;
-  width: 60px;
-  height: 60px;
-  z-index: 1;
-}
-
-.bottom-menu ul li a {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
+  padding: 20px 10px;
+  /* transform: translateX(200%); */
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.1);
+}
+
+.debit-card-container {
+  padding: 10px;
   width: 100%;
-  text-align: center;
-  font-weight: 500;
+  height: auto;
 }
 
-.bottom-menu ul li a .icon {
+.debit-card {
   position: relative;
-  display: block;
-  line-height: 70px;
-  text-align: center;
-  transition: 0.5s;
+  width: 100%;
+  height: 170px;
+  min-width: 300px;
+  min-height: 170px;
+  border-radius: 15px;
 }
 
-.bottom-menu ul li a .icon .MuiSvgIcon-root {
-  font-size: 26px;
-  color: #373848;
-}
-
-.bottom-menu ul li.active a .icon {
-  transform: translateY(-26px);
-}
-
-.bottom-menu ul li.active a .icon .MuiSvgIcon-root {
-  color: #faf9fb;
-  transition: 0.5s;
-}
-
-.indicator {
+.debit-card::before {
   position: absolute;
-  height: 60px;
-  width: 60px;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background: #f8901c;
-  top: -50%;
-  border-radius: 50%;
-  border: 6px solid #faf9fb;
-  transition: 0.5s;
+  transform: rotate(5deg);
+  border-radius: 15px;
+  filter: blur(2px);
+  z-index: -2;
 }
 
-.indicator::before {
+.debit-card::after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(35deg,
+      rgba(255, 255, 255, 0.3),
+      rgba(255, 255, 255, 0.1));
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  z-index: -1;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.card-group {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.card-logo,
+.card-chip,
+.card-number,
+.card-name,
+.card-from,
+.card-to,
+.card-ring {
+  position: absolute;
+}
+
+.card-logo {
+  width: 60px;
+  top: 30px;
+  right: 30px;
+  height: auto;
+}
+
+.card-chip {
+  width: 40px;
+  top: 50px;
+  left: 30px;
+  height: auto;
+}
+
+.card-number,
+.card-from,
+.card-to,
+.card-name {
+  color: #fff;
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+
+.card-number {
+  left: 30px;
+  bottom: 60px;
+}
+
+.card-name {
+  font-size: 12px;
+  bottom: 30px;
+  left: 30px;
+}
+
+.card-from {
+  font-size: 12px;
+  bottom: 30px;
+  right: 90px;
+}
+
+.card-to {
+  bottom: 30px;
+  right: 30px;
+  font-size: 12px;
+}
+
+.card-ring {
+  height: 400px;
+  width: 400px;
+  border-radius: 100vw;
+  background: transparent;
+  border: 50px solid rgba(0, 0, 0, 0.1);
+  top: -250px;
+  right: -250px;
+  box-sizing: border-box;
+}
+
+.card-ring::after {
   content: "";
   position: absolute;
-  top: 50%;
-  left: -20px;
-  width: 18px;
-  height: 18px;
+  height: 500px;
+  width: 500px;
+  border-radius: 100vw;
   background: transparent;
-  border-top-right-radius: 18px;
-  box-shadow: 0px -10px 0 0 #faf9fb;
+  border: 50px solid rgba(0, 0, 0, 0.1);
+  bottom: -415px;
+  right: -155px;
+  box-sizing: border-box;
 }
-
-.indicator::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: -20px;
-  width: 18px;
-  height: 18px;
-  background: transparent;
-  border-top-left-radius: 18px;
-  box-shadow: 0px -10px 0 0 #faf9fb;
-}
-
-.bottom-menu ul li:nth-child(1).active~.indicator {
-  transform: translateX(calc(60px * 0));
-}
-
-.bottom-menu ul li:nth-child(2).active~.indicator {
-  transform: translateX(calc(60px * 1));
-}
-
-.bottom-menu ul li:nth-child(3).active~.indicator {
-  transform: translateX(calc(60px * 2));
-}
-
-.bottom-menu ul li:nth-child(4).active~.indicator {
-  transform: translateX(calc(60px * 3));
-}
-
-.bottom-menu ul li:nth-child(5).active~.indicator {
-  transform: translateX(calc(60px * 4));
-}
-
-.bottom-menu ul li:nth-child(6).active~.indicator {
-  transform: translateX(calc(60px * 5));
-}
-
-/* Left menu styles ends*/

@@ -9,6 +9,7 @@ import { MenuCard } from './Components/MenuCard';
 import { MenuItems, Items } from './Components/Data'
 import { ItemCard } from './Components/ItemCard';
 import { DebitCard } from './Components/DebitCard';
+import CartItem from './Components/CartItem';
 
 
 function App() {
@@ -86,11 +87,36 @@ function App() {
 
           </div>
         </div>
-        <div className='right-menu'>
+        <div className='rightMenu'>
           <div className='debit-card-container'>
             <div className='debit-card'>
               <DebitCard />
             </div>
+          </div>
+          <div className='cart-checkout-container'>
+            <SubMenuContainer name={"cart items"} />
+            <div className='cart-container'>
+              <div className='cart-items'>
+                <CartItem
+                  // key={1}
+                  // itemId={1}
+                  name={"burger"}
+                  imgSrc={"https://firebasestorage.googleapis.com/v0/b/food-delivery-37c59.appspot.com/o/Images%2Fdelivery.png?alt=media&token=69b9823d-96df-452a-bd4e-14d27a4cc337"}
+                  qty={"4"}
+                  price={"7.7"}
+                />
+              </div>
+            </div>
+            <div className='total-section'>
+              <h3>
+                Total
+              </h3>
+              <p>
+                <span>$ 45</span>
+              </p>
+            </div>
+            <button className='checkout'>Check out</button>
+
           </div>
           <div className='add-some-item'></div>
         </div>
